@@ -1,98 +1,58 @@
-# 데이터베이스 모델링 및 ERD 및 MySql 활용
+# 테이블 정의서를 보고 설계한 최종 물리적 모델
 
-- MySql(DBMS) 8.x 버전
-  : RDBMS(관계형 데이터베이스 관리 시스템)
+## MySQL 실행
 
-## 1. 요구사항 분석
+- `services.msc` 에서 MySQL 서비스 실행
+- `cmd` 에서 `net start mysql` 명령어로 실행
+- `cmd` 에서 `mysql -u root -p` 명령어로 접속
+- `cmd` 에서 `mysql -u root -p < 파일명.sql` 명령어로 파일 실행
 
-- 회의 참석(회의록)
-- 회의록 검토 후 각 사항을 요구사항 분석(요구사항정의서, 업무지시서)
-  <br />
+## MySQL Workbench 에서 설계
 
-## 2. 요구사항 분석을 하는 이유
+![image](https://github.com/user-attachments/assets/9dd9565a-e5cb-4dbd-98a0-3ecac5b6c6a9)
+![image](https://github.com/user-attachments/assets/cd4e645f-0a40-4742-b66d-86bbc2f1ff89)
+![image](https://github.com/user-attachments/assets/11acb7fb-7bf9-4900-af41-9ee66aef46e8)
+![image](https://github.com/user-attachments/assets/b600ecfe-ca7f-4f5a-8010-febde8d2427f)
+![image](https://github.com/user-attachments/assets/79d31c57-0be1-40f8-968b-5b568f1ee4ec)
+![image](https://github.com/user-attachments/assets/3f4d7af7-2be9-4617-8a3a-58a4229ce846)
 
-- 각 내용의 속성을 찾고 분류
-- 분류 된 내용을 모아서 Entity 정의
-- 각 Entity 간의 관계를 찾기
-- 요구사항 정의서 작성
+- **CREATE DATABASE study;**
+  - semicolon 을 붙여야 한다.
 
-### 2.1. 요구사항 분석 예시
+```sql
+CREATE DATABASE study;
+```
 
-- 고객은 고객코드, 고객명, 전화번호, 이메일, 주소(기본주소, 상세주소), 지역, 가입일로 되어 있다.
-- 고객은 지역별로 관리되도록 한다.
-- 지역은 지역코드와 지역명으로 되어 있고, 지역명은 대한민국의 지역코드(02: 서울특별시)를 이용한다.
-- 한 지역에는 여러 고객이 있을 수 있다.
-- 제품은 제품코드, 제품명, 제품색상, 가격으로 되어 있다.
-- 하나의 제품은 여러 색상을 가질 수 있다.
-- 고객은 등록된 제품을 구매할 수 있다.
-- 한 명의 고객은 여러 제품을 구매할 수 있고, 하나의 제품은 여러 고객이 구매할 수 있다.
-- 고객이 제품을 구매 시 구매수량과 구매일자를 기록한다.
+- schema 탭을 선택해야 한다.
 
-### 2.2. 요구사항 정의서 또는 업무 기술서(회사마다 포맷이 다름)
+![image](https://github.com/user-attachments/assets/2ac4332c-d7a7-442c-a404-3249c19e9ec0)
+![image](https://github.com/user-attachments/assets/283b52fe-1128-4977-a717-bbf13058a3fb)
+![image](https://github.com/user-attachments/assets/f87e74dd-9cb8-4ea3-9cbe-cec0d8ef2269)
 
-![업무기술서](https://github.com/user-attachments/assets/00e261ba-580a-4624-a5d1-006b0ecf52f8)
+- 다이어그램을 그리기 위해서 Reverse Engineer 를 선택
 
-### 2.3. 속성(Attribute) 찾기 후 Entity 정의
+![image](https://github.com/user-attachments/assets/bc0a3101-f710-4145-af1b-26b54577eaf8)
 
-- 설계 전문가는 Entity 정의 후 속성을 선별해나간다
-- 신입 데이터 설계자는 Attribute 선별 후 Entity 정의
+![image](https://github.com/user-attachments/assets/1cc461c5-6dd3-4ac2-bdaa-7dc2bf451424)
 
-#### 2.3.1. 먼저 Entity 항목정리
+![image](https://github.com/user-attachments/assets/28578b93-a92f-49b9-a3ed-0ad731291dba)
 
-- 명사소문자 추천
+- 어떤 DB 를 그릴지 선택
 
-![속성 찾기](https://github.com/user-attachments/assets/751a552e-4866-4127-9f8a-97ca7036ea7f)
+![image](https://github.com/user-attachments/assets/8a32105a-ef9c-49e0-9ad0-adc218a3459f)
 
-#### 2.3.2. 각 Entity 간의 관계정리
+![image](https://github.com/user-attachments/assets/563377a5-264f-47d3-b39e-1c7b1da0622e)
 
-- 동사소문자 추천
+![image](https://github.com/user-attachments/assets/8f05bf4d-f807-48ee-8dfd-443e8500230c)
 
-![관계도](https://github.com/user-attachments/assets/62183626-77a2-4149-bc61-9f8f808abdd2)
+![image](https://github.com/user-attachments/assets/35679672-5ec1-470e-9a24-2c20277aaa7f)
 
-<br/>
+![image](https://github.com/user-attachments/assets/370bb646-1af1-444a-b2e3-1eec3fdeadf9)
 
-## 3. ERD 그리기
+![image](https://github.com/user-attachments/assets/d1d835e9-1fbe-4444-a7f6-2b8cdc3b86da)
 
-### 3.1.개념적 모델링
+- 자동으로 나온다.
 
-- Entity-Relationship-Diagram
+## 작성순서
 
-![기본형태](https://github.com/user-attachments/assets/ea0410f8-ed1d-4424-b739-1a5fceceec37)
-
-- 고객
-
-![고객](https://github.com/user-attachments/assets/5dd6478c-843c-48a6-b4b4-a1a392b73ff4)
-
-- 고객 PK 후보
-
-![고객 PK 후보](https://github.com/user-attachments/assets/57f848fc-90a1-427b-8172-8fdf3d81a670)
-
-- 지역
-
-![지역](https://github.com/user-attachments/assets/9bb54756-d144-4cd3-b852-b0d95b000e2c)
-
-- 제품
-
-![제품](https://github.com/user-attachments/assets/e2a35f2e-3fb5-4001-86e3-6f20c7cecba3)
-
-### 3.2. Realation 표현하기
-
-- 개체와 개체가 맺고 있는 연관성을 표현
-
-![Relation](https://github.com/user-attachments/assets/3b488f64-e688-458f-82b6-c2cc57a5568a)
-
-#### 고객은 제품을 구매한다.
-
-![고객-제품 관계](https://github.com/user-attachments/assets/7b231023-55ad-4538-8ad3-1051f3cbccef)
-
-![최종](https://github.com/user-attachments/assets/e498ab6c-2d2f-4b29-b2a8-78cead7493bd)
-
-<br/>
-
-## 4. Logical Data Modeling(논리적 데이터 모델링)
-
-- 개념적 schema 를 표 또는 테이블 형식으로 표현함
-- Entity 의 속성 데이터 타입, 길이, null 허용여부, 기본값, 제약 조건 등을 세부적으로 작성 후 문서화
-- 즉, `테이블 정의서`를 생성(이를 위한 도구는 다양함)
-
-![테이블 정의서](https://github.com/user-attachments/assets/3af62455-5ae8-4673-b2c2-734a8240c400)
+- 참조를 해야 하므로 지역 부터 작성
