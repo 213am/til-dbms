@@ -409,4 +409,4 @@ select name as "이름", email as "메일주소" from author 작성자;
   - 예를 들어, m 옵션을 주면 microsecond 단위까지 저장
   - YYYY-MM-DD HH:mm:ss
   - 가장 많이 사용 ( 주문시간, 글 작성 시간 등 )
-  - 현재시간을 추력하는 함수 : current_timestamp( ), now( )
+  - 현재시간을 출력하는 함수 : current_timestamp( ), now( )
